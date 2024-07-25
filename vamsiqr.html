@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="body1">
+
+    <h1 class="H1" id="H1">Enter a URL</h1>
+  <div class="input">
+    <input   type="password" id="url-input" placeholder="Enter your URL">
+    <img id="close" class="close" src="eye-close.png" alt=""  >
+    
+  </div>
+  <div id="imgbox">
+    <img src="" alt="" id="qrimage" >
+  </div>
+  <div class="button">
+    <button onclick="generateqrcode()" class="input-container" id="generate-button">Generate QR Code</button>
+  </div>
+  <button class="btn1"id="btn1">Next  </button>
+  </div>
+  
+
+<script>
+    let urlInput = document.getElementById("url-input");
+    let qrImage = document.getElementById("qrimage");
+    let h1=document.getElementById("H1");
+    let close=document.getElementById("close");
+    let btn1=document.getElementById("btn1");
+
+    btn1.addEventListener("click", validate);
+
+        function validate() {
+            
+            window.location.assign("vamsi.html");
+        }
+    close.addEventListener("click",closed);
+
+    function closed() {
+      if (urlInput.type === "password") {
+          urlInput.type = "text";
+          close.src = "eye-open.png";
+      } else {
+          urlInput.type = "password";
+          close.src = "eye-close.png";
+      }
+  }
+
+    
+    urlInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        generateqrcode();
+      }
+    });
+
+    urlInput.addEventListener("mousemove",vamsi);
+    urlInput.addEventListener("mouseout",vamssi);
+    
+    function vamsi(){
+      urlInput.style.backgroundColor="lightblue"
+    }
+    function vamssi(){
+      urlInput.style.backgroundColor="white"
+    }
+    
+    
+    function generateqrcode() {
+      
+      if(urlInput.value.length>0) {
+        alert("vamsi is correct")
+        h1.innerHTML="your qr code is ready"
+        urlInput.style.borderColor="green";
+        urlInput.style.borderWidth = "3px" 
+        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(urlInput.value);
+      }
+      else {
+        urlInput.placeholder = "Please enter your URL again";
+        urlInput.style.borderColor="red";
+        urlInput.style.borderWidth = "2px" 
+        
+       
+    }
+    
+        
+    }
+</script>
+ 
+</body>
+</html>
